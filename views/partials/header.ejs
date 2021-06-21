@@ -1,0 +1,22 @@
+<% if(admin) { %> 
+  <div class="w3-bar w3-white w3-large">
+      <a href="#" class="w3-bar-item w3-button w3-red w3-mobile"><i class="fa fa-bed w3-margin-right"></i>Logo</a>
+      <a href="http://localhost:3000/admin#rooms" class="w3-bar-item w3-button w3-mobile">Apartamentos</a> 
+    <a class="w3-bar-item w3-button" href="/admin/add-new" style="width:15% ">Nuevo apartamento</a>
+    <a href="http://localhost:3000/admin#about" class="w3-bar-item w3-button w3-mobile">Acerca de</a>
+    <a href="http://localhost:3000/admin#contact" class="w3-bar-item w3-button w3-mobile">Contacto</a>
+    <a href="http://localhost:3000" class="w3-bar-item w3-button w3-mobile" style="background-color: black; color: white;">User</a>
+  </div>
+      <% }else{ %> 
+  <div class="w3-bar w3-white w3-large">
+      <a href="#" class="w3-bar-item w3-button w3-red w3-mobile"><i class="fa fa-bed w3-margin-right"></i>Logo</a>
+      <a href="http://localhost:3000/#rooms" class="w3-bar-item w3-button w3-mobile">Apartamentos</a> 
+      <a href="http://localhost:3000/#about" class="w3-bar-item w3-button w3-mobile">Acerca de</a>
+      <a href="http://localhost:3000/#contact" class="w3-bar-item w3-button w3-mobile">Contacto</a>
+      <a href="http://localhost:3000/admin" class="w3-bar-item w3-button w3-mobile" style="background-color: black; color: white;">Admin</a>
+    </div>
+        <% } %> 
+
+
+
+  

@@ -1,0 +1,38 @@
+body{
+    display:column;
+    flex-direction:row ;
+    flex-wrap: wrap; 
+}
+
+/* detalles.ejs --------------------------------- */
+.reservaUsuario{
+    display: flex;
+    flex-direction: row; 
+    flex-wrap: wrap; 
+    background-color: yellow;
+    width: 50%;
+    
+}
+
+.container{
+    background-color: aquamarine;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;   
+}
+
+.imgDet{
+    display: flex;
+    width: 100%;
+    margin: 20px;
+    background-color: yellow;
+}
+/* .add-new{
+    margin: 150px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgb(221, 213, 213); 
+    margin: 50px 200px 0 200px;
+} */

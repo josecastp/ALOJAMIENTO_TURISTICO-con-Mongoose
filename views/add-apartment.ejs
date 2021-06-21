@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="/style.css"
+    
+</head>
+
+<body>
+    <header>
+        <div>
+          <%- include('./partials/header.ejs') %>
+        </div>
+      </header>
+      <section class="add-new">
+        
+        <div class="w3-container w3-orange">
+          <h2>Administración de apartamentos</h2>
+        </div>
+          <form class="w3-container" action="/admin/add-new" method="POST">
+              
+              <input class="w3-input w3-border" type="hidden"  id="idApartment" name="idApartment" value="<%= apartment._id %>">
+              <p>
+              <label for="title">Nombre</label>
+              <input class="w3-input  w3-border" type="text" maxlength="50" id="title" name="title" value="<%= apartment.title %> ">
+              </p>
+              <p>
+              <label for="price">Precio</label>
+              <input class="w3-input  w3-border" type="number" min="1" max="1000000" id="price" name="price" required value="<%= apartment.price %>">
+          </p>
+          <p>
+              <label for="size">Metros cuadrados m<sup>2</sup></label>
+              <input class="w3-input  w3-border" type="number" min="15" max="1000" id="size" name="size" required value="<%= apartment.size %>">
+          </p>
+          <h3>Fotos del apartamento</h3>
+          <p>
+              <label>Foto principal</label>
+              <input class="w3-input w3-border" type="url" required id="mainPhoto" name="mainPhoto" value="<%= apartment.mainPhoto %>">
+          </p>
+        <!--  Nuevas Funcionalidades -->
+          
+        <!--  <p>
+              <label for="diningRoom" placeholder="diningRoom"></label>Salon</label>
+              <input class="w3-input  w3-border" type="url" id="diningRoom" name="diningRoom" value="<%= apartment.mainPhoto %>">
+          </p>
+          <p>
+            <label for="bathroom">Baño</label>
+            <input class="w3-input  w3-border" type="url" id="bathroom" name="bathroom" value="<%= apartment.mainPhoto %>">
+          </p>
+          <p>
+          <label for="bedroom">Dormitorio</label>
+          <input class="w3-input  w3-border" type="url" id="bedroom" name="bedroom" value="<%= apartment.mainPhoto %>"> -->
+          </p>
+          <h3>Servicios</h3>
+          <input class="w3-check" type="checkbox" name="baño" value="baño"><label>Baño</label>
+          <input class="w3-check" type="checkbox" name="telefono" value="telefono"><label>Telefono</label>
+          <input class="w3-check" type="checkbox" name="wifi" value="wifi"><label>Baño</label>
+          <input class="w3-check" type="checkbox" name="tv" value="tv"><label>TV</label>
+          <input class="w3-check" type="checkbox" name="calefaccion" value="calefaccion"><label>Calefaccion</label>
+          <input class="w3-check" type="checkbox" name="AC" value="AC"><label>AC</label>
+          <input class="w3-check" type="checkbox" name="cocina" value="cocina"><label>Cocina</label>
+          <h3>Otras caracteristicas</h3>
+          <p>
+            <label>Número de habitaciones</label>
+            <input class="w3-input w3-border" type="number" id="rooms" name="rooms" value="<%= apartment.rooms %> ">
+          </p>
+          <p>
+            <label>Número de camas por habitacion</label>
+            <input class="w3-input w3-border" type="number" id="beds" name="beds" value="<%= apartment.beds %> ">
+          </p>
+          <p>
+            <label>Número de personas</label>
+            <input class="w3-input w3-border" type="number" id="persons" name="persons" value="<%= apartment.persons %> ">
+          </p>
+          <p>
+            <label>Descripción del Apartamento</label>
+            <input class="w3-input w3-border" type="text" maxlength="150" id="description" name="description" value="<%= apartment.description %> ">
+          </p>
+          <p>
+            <label>Normas de uso</label>
+            <input class="w3-input w3-border" type="text" maxlength="250" id="rules" name="rules" value="<%= apartment.rules %> ">
+          </p>
+          <h3>Ubicación del apartamento</h3>
+          <p>
+            <label>Provincia</label>
+            <input class="w3-input w3-border" type="text"  id="province" name="province" value="<%= apartment.province %> ">
+          </p>
+          <p>
+            <label>Ciudad</label>
+            <input class="w3-input w3-border" type="text"  id="city" name="city" value="<%= apartment.city %> ">
+          </p>
+          <p>
+            <label>Ubicación</label>
+            <input class="w3-input w3-border" type="text"  id="location" name="location" value="<%= apartment.location %> ">
+          </p>
+          
+            <input id="enviar" type="submit">
+          
+            <% if (apartment._id) {%> 
+            <a href="/admin/apartment/<%= apartment._id %>/delete"><button style="background-color:rgb(235, 202, 202)"> Eliminar</button></a>
+            <% } %> 
+        </form>
+
+        </div>
+      </section>
+</body>
+</html>
