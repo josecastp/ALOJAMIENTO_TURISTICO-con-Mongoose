@@ -2,9 +2,13 @@ const express = require('express');
 
 const DataBase = require('./database/database');
 
-const adminRoutes = require('./routes/AdminApartmentRoutes') //require requiere por parametro un string. Es un objeto router.
+//Requerimos todas para prefijarlas con /xxxxx
+const adminRoutes = require('./routes/AdminApartmentRoutes'); //require requiere por parametro un string. Es un objeto router.
 
-const userRoutes = require('./routes/UserApartmentRoutes') //require requiere por parametro un string. Es un objeto router.
+const userRoutes = require('./routes/UserApartmentRoutes'); 
+
+const bookingRoutes = require('./routes/BookingRoutes');
+
 
 const app = express();
 
@@ -17,9 +21,12 @@ app.use(express.static('public'));
 
 app.use(express.urlencoded({extended: false})); //Poder gestionar las peticiones post del protocolo http
 
-app.use('/', userRoutes); //En este caso no prefija rutas
+
 
 app.use('/admin', adminRoutes); //Middleware:predefine lo que empiece por /admin, lo que pasas ira a buscar la ruta si exite una que coincida en './routes/AdminApartmentRoutes'. Ahorramos de escribirlo en cada endpoint
+app.use('/booking',bookingRoutes);
+app.use('/', userRoutes); //En este caso no prefija rutas
+
 
 app.use((req, res)=>{ 
     // res.status(404).send("<h1>Error 404: Esta página no existe</h1>");

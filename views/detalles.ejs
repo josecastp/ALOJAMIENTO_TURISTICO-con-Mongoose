@@ -29,16 +29,18 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
     <h3>desde <%= apartment.price %>€</h3>
     <h6>por noche</h6>
     <hr>
-    <form action="/action_page.php" target="_blank">
-      <p><label><i class="fa fa-calendar-check-o"></i> Check In</label></p>
-      <input class="w3-input w3-border" type="text" placeholder="DD MM YYYY" name="CheckIn" required>          
-      <p><label><i class="fa fa-calendar-o"></i> Check Out</label></p>
-      <input class="w3-input w3-border" type="text" placeholder="DD MM YYYY" name="CheckOut" required>         
-      <p><label><i class="fa fa-male"></i> Adults</label></p>
+    <!-- Formulario para RESERVA -->
+    <form action="/booking/new-reservation" method="POST">
+      <input type="hidden" name="idApartment" value="<%= apartment.id %>">
+      <p><label><i class="fa fa-calendar-check-o"></i>Fecha Entrada</label></p>
+      <input class="w3-input w3-border" type="date" id="checkIn" name="checkIn" required>          
+      <p><label><i class="fa fa-calendar-o"></i>Fecha Salida</label></p>
+      <input class="w3-input w3-border" type="date" id="checkOut" name="checkOut" required>         
+      <p><label><i class="fa fa-male"></i> Adultos</label></p>
       <input class="w3-input w3-border" type="number" value="1" name="Adults" min="1" max="6">              
-      <p><label><i class="fa fa-child"></i> Kids</label></p>
+      <p><label><i class="fa fa-child"></i> Niños</label></p>
       <input class="w3-input w3-border" type="number" value="0" name="Kids" min="0" max="6">
-      <p><button class="w3-button w3-block w3-green w3-left-align" type="submit"><i class="fa fa-search w3-margin-right"></i> Search availability</button></p>
+      <p><button class="w3-button w3-block w3-green w3-left-align" type="submit"><i class="fa fa-search w3-margin-right"></i>Reservar</button></p>
     </form>
   </div>
   <div class="w3-bar-block">

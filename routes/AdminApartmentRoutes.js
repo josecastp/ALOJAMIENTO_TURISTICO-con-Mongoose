@@ -26,15 +26,38 @@ router.get('/add-new', (req, res) => {
 //AÑADIR O MODIFICAR apartamento
 router.post('/add-new', async (req, res) => {
     
-    //Recuperamos campos del formulario:
+    //Recuperamos todos los campos del formulario:
     const title = req.body.title;
     const price = req.body.price;
     const size = req.body.size;
+    //Fotografías:
     const mainPhoto = req.body.mainPhoto;
+    /* const dinningroom = req.body.dinningroom;
+    const bathroom = req.body.bathroom;
+    const bedroom = req.body.bedroom; */
 
-    
+    //Services:
+    const bathroom = req.body.bathroom;
+    const telephone = req.body.telephone;
+    const wifi = req.body.wifi;
+    const tv = req.body.tv;
+    const heating = req.body.heating;
+    const AC = req.body.AC;
+    const kitchen  = req.body.kitchen;
+    //Features
+    const bathrooms = req.body.bathrooms;
+    const rooms = req.body.rooms;
+    const beds = req.body.beds;
+    const persons = req.body.persons;
+    const description = req.body.description;
+    const rules = req.body.rules;
+    //Location:
+    const province = req.body.province;
+    const city = req.body.city;
+
+    //Cargamos el valor de idApartment...si viene en el body, si no, es nuevo:
     const idApartment = req.body.idApartment;
-    // Comprobar si recibimos un idApartment significa que queremos modificar el apartamento. En caso contrario, insertar un documento nuevo.
+    //Comprobamos si recibimos un idApartment significa que queremos modificar el apartamento. En caso contrario, insertar un documento nuevo.
     if (idApartment) {
         // Realizar un updateOne !!
         const apartment = await Apartment.findById(idApartment);
@@ -48,18 +71,15 @@ router.post('/add-new', async (req, res) => {
         console.log('Es un apartamento nuevo!')
     }
 
-    /* const title = req.body.title;
-    const price = req.body.price;
-    const size = req.body.size;
-    const mainPhoto = req.body.mainPhoto;
-   */
-
+    // Usamos el modelo Apartment para insertar un nuevo documento en la BBDD
    const apartment = new Apartment({
         title,
         price,
         size,
-        mainPhoto
+        mainPhoto,
+
     });
+    //Insertamos nuevo documento en la BBDD
     await apartment.save();
 
    res.send("Apartamento creado.");
@@ -75,7 +95,7 @@ router.get('/apartment/:idApartment/delete', async (req, res) => {
     // buscar el apartamento en la colección Apartments por su _id:
     const apartment = await Apartment.findById(idApartment);
     //Asignamos la fecha actual:
-    apartment.fechaBaja = Date();
+    apartment.fechaBaja = Date(); 
     await apartment.save();
 
     res.send(`El apartamento ${idApartment} ha sido dado de baja.`)
