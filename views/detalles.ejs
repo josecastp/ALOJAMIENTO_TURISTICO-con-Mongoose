@@ -33,7 +33,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
     <form action="/booking/new-reservation" method="POST">
       <input type="hidden" name="idApartment" value="<%= apartment.id %>">
       <p><label><i class="fa fa-calendar-check-o"></i>Fecha Entrada</label></p>
-      <input class="w3-input w3-border" type="date" id="checkIn" name="checkIn" required>          
+      <input class="w3-input w3-border" type="date" id="checkIn" name="checkIn" required>         
       <p><label><i class="fa fa-calendar-o"></i>Fecha Salida</label></p>
       <input class="w3-input w3-border" type="date" id="checkOut" name="checkOut" required>         
       <p><label><i class="fa fa-male"></i> Adultos</label></p>
@@ -68,12 +68,19 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
   <!-- Slideshow Header -->
   <div class="w3-container" id="apartment">
     <h2 class="w3-text-green"><%= apartment.title %></h2>
+     <!--  Mensaje de reservado -->
+     <% if(reservado){ %> 
+      <h2 style="color:red"><strong>Enhorabuena!</strong> acabas de reservar el apartamento del <%= checkIn %> hasta el <%= checkOut %></h2>
+    <% } %> 
     <div class="w3-display-container mySlides">
     <img src="<%= apartment.mainPhoto %>" style="width:100%;margin-bottom:-6px">
       <div class="w3-display-bottomleft w3-container w3-black">
         <p>Living Room</p>
       </div>
     </div>
+
+  
+     
     <div class="w3-display-container mySlides">
     <img src="/w3images/diningroom.jpg" style="width:100%;margin-bottom:-6px">
       <div class="w3-display-bottomleft w3-container w3-black">

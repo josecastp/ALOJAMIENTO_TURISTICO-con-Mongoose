@@ -2,7 +2,7 @@
 const mongoose = require('mongoose');
 
 const bookingSchema = new mongoose.Schema({
-    chekIn: Date,
+    checkIn: Date,
     checkOut: Date,
     idApartment: { type: mongoose.Schema.Types.ObjectId, ref: 'Apartments' } //El tipo va a ser un ObjectId y referencia a la coleccion apartments (heredará la _id de la coleccion apartents) 
 })

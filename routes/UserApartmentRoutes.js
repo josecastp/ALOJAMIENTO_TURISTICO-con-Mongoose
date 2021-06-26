@@ -37,6 +37,7 @@ router.get('/apartment/:apartamentoId', async (req, res)=>{
     //2. renderizar nueva vista detalle.js pasandole unicamente este apartamento
     res.render('detalles.ejs', { //render es un metodo que tiene como primer parametro la plamtilla y como segundo un objeto con todas las variables que le queremos paar a la vista
         apartment: valorId, //le pasamos a la vista  una variable que se llama apartment, cuyo valor es el documento recuperado de la BBDD
+        reservado:false,//Para no mostrar el mennsaje de reservado
         admin:false //le pasamos a la vista  una variable que se llama admin, cuyo valor es un booleano de valor false.
     }) 
 
