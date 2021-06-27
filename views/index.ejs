@@ -10,12 +10,12 @@
 body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
 </style>
 <body class="w3-light-grey">
-  <!-- proves -->
   
+ <!--  Navegacion del menu -->
   <div>
     <%- include('./partials/header.ejs') %>
   </div>
-  <!-- fi proves -->
+ 
 
 <!-- Header -->
 <header class="w3-display-container w3-content" style="max-width:1500px;">
@@ -35,6 +35,19 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
     <p>Siéntete como en tu propia casa. Ofrecemos las mejores camas de la industria. Duerme bien y descansa mejor.</p>
   </div>
   
+ <!--  Filtrado por: -->
+ <h2>Filtros de búsqueda</h2>
+    <form action="/search" method="GET">
+        <label for="persons">Personas</label>
+        <input type="number" min="0" max="50" id="persons" name="persons" value="">
+        <label for="province">Provincia</label>
+        <input type="text" id="province" name="province" value="">
+        <label for="city">Ciudad</label>
+        <input type="text" id="city" name="city" value="">
+        <!-- enviar -->
+        <input type="submit" value="Filtrar">
+    </form>
+  
  
 <!-- Mostrar todos los apartamentos -->
 <div class="w3-row-padding w3-padding-16">
@@ -42,8 +55,10 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
   <div class="w3-third w3-margin-bottom">
     <img src="<%= apartment.mainPhoto %>" alt="Norway" style="width:380px;height:270px">
     <div class="w3-container w3-white">
-      <h3><%= apartment.title %></h3>
-      <h6 class="w3-opacity">Desde <%= apartment.price %> €</h6>
+      <h3 style="color:green"><%= apartment.title %></h3>
+      <h6><%= apartment.city %>, (<%= apartment.province %>)</h6>
+      <h5 class="w3-opacity">Desde <%= apartment.price %> €</h5>
+
       <p>Tamaño del apartamento: <%= apartment.size %> m<sup>2</sup></p>
       <p class="w3-large">
       <i class='fa fa-home'></i> <!-- Se muestra por defecto;todos son apartamentos -->

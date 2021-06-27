@@ -4,9 +4,7 @@ const DataBase = require('./database/database');
 
 //Requerimos todas para prefijarlas con /xxxxx
 const adminRoutes = require('./routes/AdminApartmentRoutes'); //require requiere por parametro un string. Es un objeto router.
-
 const userRoutes = require('./routes/UserApartmentRoutes'); 
-
 const bookingRoutes = require('./routes/BookingRoutes');
 
 

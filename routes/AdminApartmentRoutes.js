@@ -74,8 +74,8 @@ router.post('/add-new', async (req, res) => {
         //Modificamos el apartamento mediante una comanda de mongoose:
         //await apartment.updateOne({title:title},{price:price},{size:size},{mainPhoto:mainPhoto});
         await apartment.updateOne({title:title, price:price, size:size, mainPhoto:mainPhoto,     dinningroomPhoto:dinningroomPhoto,bathroomPhoto:bathroomPhoto, bedroomPhoto:bedroomPhoto, fechaBaja:fechaBaja, bathrooms:bathrooms,
-            AC:AC, heating:heating, wheelchair:wheelchair, tv:tv, kitchen:kitchen, wifi:wifi,
-            bedrooms:bedrooms,beds:beds, persons:persons, description:description, rules:rules, province:province, city:city, latitude:latitude});
+            AC:AC, heating:heating, wheelchair:wheelchair, tv:tv, kitchen:kitchen, wifi:wifi, bedrooms:bedrooms,
+             beds:beds, persons:persons, description:description, rules:rules, province:province, city:city, latitude:latitude, longitude:longitude});
        //Mostramos todos los apartamentos:
        return Tools.mostrarApartamentos(req,res);
     }
@@ -101,9 +101,9 @@ router.post('/add-new', async (req, res) => {
         tv,
         kitchen,
         wifi,
-        bedrooms,
-        beds,
         persons,
+        bedrooms,
+        beds,       
         description,
         rules,
         province,
