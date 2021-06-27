@@ -71,32 +71,30 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
      <!--  Mensaje de reservado -->
      <% if(reservado){ %> 
       <h2 style="color:red"><strong>Enhorabuena!</strong> acabas de reservar el apartamento del <%= checkIn %> hasta el <%= checkOut %></h2>
-    <% } %> 
+     <% } %> 
+     
     <div class="w3-display-container mySlides">
     <img src="<%= apartment.mainPhoto %>" style="width:100%;margin-bottom:-6px">
       <div class="w3-display-bottomleft w3-container w3-black">
-        <p>Living Room</p>
+        <p>Main View</p>
       </div>
     </div>
-
-  
-     
     <div class="w3-display-container mySlides">
-    <img src="/w3images/diningroom.jpg" style="width:100%;margin-bottom:-6px">
+    <img src="/img/Comedor.jfif" style="width:100%;margin-bottom:-6px">
       <div class="w3-display-bottomleft w3-container w3-black">
         <p>Dining Room</p>
       </div>
     </div>
     <div class="w3-display-container mySlides">
-    <img src="/w3images/bedroom.jpg" style="width:100%;margin-bottom:-6px">
+    <img src="/img/dormitorio.jpg" style="width:100%;margin-bottom:-6px">
       <div class="w3-display-bottomleft w3-container w3-black">
         <p>Bedroom</p>
       </div>
     </div>
     <div class="w3-display-container mySlides">
-    <img src="/w3images/livingroom2.jpg" style="width:100%;margin-bottom:-6px">
+    <img src="/img/dormitorio2.jpg" style="width:100%;margin-bottom:-6px">
       <div class="w3-display-bottomleft w3-container w3-black">
-        <p>Vista General</p>
+        <p>Second Room</p>
       </div>
     </div>
   </div>
@@ -108,7 +106,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
       <img class="demo w3-opacity w3-hover-opacity-off" src="/img/Comedor.jfif" style="width:100%;cursor:pointer" onclick="currentDiv(2)" title="Dining room">
     </div>
     <div class="w3-col s3">
-      <img class="demo w3-opacity w3-hover-opacity-off" src="/img/baño.jpg" style="width:100%;cursor:pointer" onclick="currentDiv(3)" title="Bedroom">
+      <img class="demo w3-opacity w3-hover-opacity-off" src="/img/dormitorio.jpg" style="width:100%;cursor:pointer" onclick="currentDiv(3)" title="Bedroom">
     </div>
     <div class="w3-col s3">
       <img class="demo w3-opacity w3-hover-opacity-off" src="/img/dormitorio2.jpg" style="width:100%;cursor:pointer" onclick="currentDiv(4)" title="Second Living Room">
@@ -119,9 +117,9 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
     <h4><strong>The space</strong></h4>
     <div class="w3-row w3-large">
       <div class="w3-col s6">
-        <p><i class="fa fa-fw fa-male"></i> Max people: 4</p>
-        <p><i class="fa fa-fw fa-bath"></i> Bathrooms: 2</p>
-        <p><i class="fa fa-fw fa-bed"></i> Bedrooms: 1</p>
+        <p><i class="fa fa-fw fa-male"></i> Número Personas: <%= apartment.persons %> </p>
+        <p><i class="fa fa-fw fa-bath"></i> Baños: <%= apartment.bathrooms %> </p>
+        <p><i class="fa fa-fw fa-bed"></i> Habitaciones: <%= apartment.bedrooms %> </p>
       </div>
       <div class="w3-col s6">
         <p><i class="fa fa-fw fa-clock-o"></i> Check In: After 3PM</p>

@@ -8,40 +8,27 @@ const apartmentSchema = new mongoose.Schema({ //Tipos de datos: https://mongoose
     title: String,
     price: Number,
     size: Number,
-    //Fotografías (de momento sólo 1):
     mainPhoto: String,
-    /*
-    dinningroom: String,
-    bathroom: String,
-    bedroom: String,
-    */
+    dinningroomPhoto: String,
+    bathroomPhoto: String,
+    bedroomPhoto: String,
     fechaBaja: Date, 
     bathrooms: Number,
-    services: {
-        bathroom: Boolean,
-        telphone: Boolean,
-        wifi: Boolean,
-        tv: Boolean,
-        heating: Boolean,
-        AC: Boolean,
-        kitchen: Boolean
-    },
-    rooms: Number,
+    AC: Boolean,
+    heating: Boolean, 
+    wheelchair: Boolean,
+    tv: Boolean,
+    kitchen: Boolean,
+    wifi: Boolean,
+    bedrooms: Number,
     beds: Number,
     persons: Number,
     description: String,
     rules: String,
-   
-    location: {
-        province: String,
-        city: String,
-       
-    }
-
-
-
-    
-
+    province: String,
+    city: String,
+    latitude: String,
+    longitude: String     
 })
 // Asociarlo a un modelo/colección
 // 'apartments'

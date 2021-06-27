@@ -4,16 +4,24 @@ const router = express.Router();//Este objeto permite registrar rutas.
 
 const Apartment = require('../models/ApartmentModel');
 
+//Creamos CLASE Tools para evitar repetir métodos:
+class Tools{
+    static async mostrarApartamentos(req, res){
+        //Recuperamos todos los documentos que NO tienen fecha de baja;
+        //Los "eliminados" tienen fecha de baja, por lo que no se muestran:
+        const allApartments = await Apartment.find({ fechaBaja: null});
+        res.render('index.ejs', { 
+            apartments: allApartments,
+            admin :true
+            })
+        }
+}
+
 // Vamos a registrar todas las rutas que tienen que ver con la manipulación de los apartamentos por parte de un usuario de tipo 'Administrador'
 
-router.get('/', async (req, res)=> {
-   // Recuperamos todos los documentos que NO tienen fecha de baja;
-//los "eliminados" tienen fecha de baja, por lo que no se muestran:
-const allApartments = await Apartment.find({ fechaBaja: null});
-res.render('index.ejs', { 
-    apartments: allApartments,
-    admin :true
-    })
+router.get('/',(req, res)=> {
+  //Mostramos todos los apartamentos:
+    Tools.mostrarApartamentos(req,res);
 })
 
 router.get('/add-new', (req, res) => {
@@ -32,21 +40,21 @@ router.post('/add-new', async (req, res) => {
     const size = req.body.size;
     //Fotografías:
     const mainPhoto = req.body.mainPhoto;
-    /* const dinningroom = req.body.dinningroom;
-    const bathroom = req.body.bathroom;
-    const bedroom = req.body.bedroom; */
-
+    const dinningroomPhoto = req.body.dinningroomPhoto;
+    const bathroomPhoto = req.body.bathroomPhoto;
+    const bedroomPhoto = req.body.bedroomPhoto; 
+    //Fecha baja
+    const fechaBaja = req.body.fechaBaja;
     //Services:
-    const bathroom = req.body.bathroom;
-    const telephone = req.body.telephone;
     const wifi = req.body.wifi;
+    const wheelchair = req.body.wheelchair;
     const tv = req.body.tv;
     const heating = req.body.heating;
     const AC = req.body.AC;
     const kitchen  = req.body.kitchen;
     //Features
     const bathrooms = req.body.bathrooms;
-    const rooms = req.body.rooms;
+    const bedrooms = req.body.bedrooms;
     const beds = req.body.beds;
     const persons = req.body.persons;
     const description = req.body.description;
@@ -54,6 +62,8 @@ router.post('/add-new', async (req, res) => {
     //Location:
     const province = req.body.province;
     const city = req.body.city;
+    const latitude = req.body.latitude;
+    const longitude = req.body.longitude;
 
     //Cargamos el valor de idApartment...si viene en el body, si no, es nuevo:
     const idApartment = req.body.idApartment;
@@ -63,8 +73,11 @@ router.post('/add-new', async (req, res) => {
         const apartment = await Apartment.findById(idApartment);
         //Modificamos el apartamento mediante una comanda de mongoose:
         //await apartment.updateOne({title:title},{price:price},{size:size},{mainPhoto:mainPhoto});
-        await apartment.updateOne({title:title, price:price, size:size, mainPhoto:mainPhoto});
-        return res.send('Apartamento modificado!');
+        await apartment.updateOne({title:title, price:price, size:size, mainPhoto:mainPhoto,     dinningroomPhoto:dinningroomPhoto,bathroomPhoto:bathroomPhoto, bedroomPhoto:bedroomPhoto, fechaBaja:fechaBaja, bathrooms:bathrooms,
+            AC:AC, heating:heating, wheelchair:wheelchair, tv:tv, kitchen:kitchen, wifi:wifi,
+            bedrooms:bedrooms,beds:beds, persons:persons, description:description, rules:rules, province:province, city:city, latitude:latitude});
+       //Mostramos todos los apartamentos:
+       return Tools.mostrarApartamentos(req,res);
     }
 
     else {
@@ -77,18 +90,37 @@ router.post('/add-new', async (req, res) => {
         price,
         size,
         mainPhoto,
+        dinningroomPhoto,
+        bathroomPhoto,
+        bedroomPhoto,
+        bathrooms,
+        fechaBaja,
+        AC,
+        heating,
+        wheelchair,
+        tv,
+        kitchen,
+        wifi,
+        bedrooms,
+        beds,
+        persons,
+        description,
+        rules,
+        province,
+        city,
+        latitude,
+        longitude
 
     });
     //Insertamos nuevo documento en la BBDD
     await apartment.save();
 
-   res.send("Apartamento creado.");
+   //Mostramos todos los apartamentos:
+   return Tools.mostrarApartamentos(req,res);
    
 })
 
 //BORRAR (no mostrar) apartamentos:
-// apartment/u34yeurweu3432423/delete --> hacer que el
-// apartamento indetificado con el _id: u34yeurweu3432423; ya no esté disponible para alquilar
 router.get('/apartment/:idApartment/delete', async (req, res) => {
     //Recuperar _id de la URL:
     const idApartment = req.params.idApartment;
@@ -97,31 +129,17 @@ router.get('/apartment/:idApartment/delete', async (req, res) => {
     //Asignamos la fecha actual:
     apartment.fechaBaja = Date(); 
     await apartment.save();
-
-    res.send(`El apartamento ${idApartment} ha sido dado de baja.`)
+    console.log("apartamento eliminado")
+    //Mostramos todos los apartamentos:
+    Tools.mostrarApartamentos(req,res);
 })
 
 
 //MOSTRAR todos los apartamentos:
-router.get('/apartments',async (req,res)=> {
-// Recuperamos todos los documentos que NO tienen fecha de baja;
-//los "eliminados" tienen fecha de baja, por lo que no se muestran:
-const allApartments = await Apartment.find({ fechaBaja: null});
-    res.render('index.ejs', { 
-        apartments: allApartments,
-        admin :true
-    })
+router.get('/apartments', (req,res)=> {
+    //Mostramos todos los apartamentos:
+    Tools.mostrarApartamentos(req,res);
 
-})
-
-
-//EDITAR apartamentos:
-router.get('/apartment/:idApartment/edit', async (req, res)=>{
-    //Recuperar _id de la URL:
-    const idApartment = req.params.idApartment;
-    // buscar el apartamento en la colección Apartments por su _id:
-    const apartment = await Apartment.findById(idApartment);
-    res.send(`Editar apartamento ${idApartment}.`)
 })
 
 

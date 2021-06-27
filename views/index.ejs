@@ -43,10 +43,18 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
     <img src="<%= apartment.mainPhoto %>" alt="Norway" style="width:380px;height:270px">
     <div class="w3-container w3-white">
       <h3><%= apartment.title %></h3>
-      <h6 class="w3-opacity">From $  <%= apartment.price %></h6>
-      <p>Single bed</p>
-      <p><%= apartment.size %> m<sup>2</sup></p>
-      <p class="w3-large"><i class="fa fa-bath"></i> <i class="fa fa-phone"></i> <i class="fa fa-wifi"></i> <i class="fa fa-tv"></i> <i class="fa fa-glass"></i> <i class="fa fa-cutlery"></i></p>
+      <h6 class="w3-opacity">Desde <%= apartment.price %> €</h6>
+      <p>Tamaño del apartamento: <%= apartment.size %> m<sup>2</sup></p>
+      <p class="w3-large">
+      <i class='fa fa-home'></i> <!-- Se muestra por defecto;todos son apartamentos -->
+      <% if (apartment.AC){ %> <i class='far fa-snowflake'></i><% } %>  <!--  Aire condicionat --> 
+      <% if (apartment.heating){ %> <i class="fa fa-fw fa-thermometer"><% } %></i><!--   calefacció -->
+      <% if (apartment.wheelchair){ %>  <i class="fa fa-wheelchair"></i><% } %><!-- mobilitat reduïda -->
+      <% if (apartment.tv){ %> <i class="fa fa-tv"></i><% } %> <!-- Televisió -->
+      <% if (apartment.kitchen){ %> <i class="fa fa-cutlery"></i><% } %><!--  Cuina -->
+      <% if (apartment.wifi){ %> <i class="fa fa-wifi"></i><% } %> <!-- Connexió a Internet --> 
+      </p>
+
 
       <!-- Enlace a cada apartamento renderizamos "apartment.ejs" .
         Segun su _Id(en routes las recuperamos y tratamos) y segun sea usuario o administrador. Podemos ver _id (en la barra del navegador se refleja la _id del documento), Mongo DB la asigna automaticamente)-->
