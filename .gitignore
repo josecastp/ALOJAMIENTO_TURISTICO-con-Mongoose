@@ -1,2 +1,6 @@
 /node_modules
 /Z-Archivos no usados
+
+# dotenv environment variables file
+.env
+.env.test

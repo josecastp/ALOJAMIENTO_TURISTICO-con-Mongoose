@@ -1,6 +1,7 @@
+require('dotenv').config()  // Trata los archivos .env que este en /root como variables globales.
 const express = require('express');
 
-const DataBase = require('./database/database');
+const DataBase = require('./database/database'); //Requerimos el archivo de la BBDD
 
 //Requerimos todas para prefijarlas con /xxxxx
 const adminRoutes = require('./routes/AdminApartmentRoutes'); //require requiere por parametro un string. Es un objeto router.

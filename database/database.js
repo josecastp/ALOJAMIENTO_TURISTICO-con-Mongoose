@@ -1,6 +1,8 @@
-const uri = "mongodb+srv://root:root@cluster0.kmx55.mongodb.net/foap-apartments?retryWrites=true&w=majority";
-
 const mongoose = require('mongoose');
+
+//Escondemos la conexión en las variables del entorno:
+const {MONGO_PASSWORD, MONGO_USER, MONGO_DB, MONGO_HOST} = process.env //Requerimos variables de entorno
+const uri = `mongodb+srv://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_HOST}/${MONGO_DB}`;
 
 class DataBase {
     // callback. "Oye, invócame cuando hayas acabado lo que tienes que hacer."

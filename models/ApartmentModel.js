@@ -1,9 +1,9 @@
 
 const mongoose = require('mongoose');
 
-//Los esquemas sirven como guias de la estructura de los documentos. Estos son necesitados para la creación del modelo. Así que antes de utilizar los modelos de manera apropiada, es necesario definir sus esquemas.
+//Los esquemas sirven como guias de la estructura de los documentos. Los necesitamos para la creación del modelo. Así que antes de utilizar los modelos de manera apropiada, es necesario definir sus esquemas.
 // Definimos el esquema:
-// Campos: tipoValor
+// Campo: tipoValor
 const apartmentSchema = new mongoose.Schema({ //Tipos de datos: https://mongoosejs.com/docs/schematypes.html
     title: String,
     price: Number,
@@ -38,3 +38,7 @@ const Apartment = mongoose.model('Apartments', apartmentSchema);
 
 // Exportar el MODELO
 module.exports = Apartment;
+
+
+//Exportar FORMA B:
+//module.exports = mongoose.model('Apartments', apartmentSchema);

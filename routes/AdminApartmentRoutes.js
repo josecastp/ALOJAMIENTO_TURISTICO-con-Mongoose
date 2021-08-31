@@ -24,6 +24,7 @@ router.get('/',(req, res)=> {
     Tools.mostrarApartamentos(req,res);
 })
 
+//MOSTRAR add-apartment:
 router.get('/add-new', (req, res) => {
     res.render('add-apartment',{
         apartment: {},//Pasamos objeto vacio,si no da error en campos <%= apartment.xxx %> de add-apartment
@@ -31,7 +32,7 @@ router.get('/add-new', (req, res) => {
     });
 })
 
-//AÑADIR O MODIFICAR apartamento
+//AÑADIR O MODIFICAR apartamento:
 router.post('/add-new', async (req, res) => {
     
     //Recuperamos todos los campos del formulario:
@@ -69,19 +70,13 @@ router.post('/add-new', async (req, res) => {
     const idApartment = req.body.idApartment;
     //Comprobamos si recibimos un idApartment significa que queremos modificar el apartamento. En caso contrario, insertar un documento nuevo.
     if (idApartment) {
-        // Realizar un updateOne !!
+        // Recuperamos el document con la IdApartment
         const apartment = await Apartment.findById(idApartment);
         //Modificamos el apartamento mediante una comanda de mongoose:
         //await apartment.updateOne({title:title},{price:price},{size:size},{mainPhoto:mainPhoto});
-        await apartment.updateOne({title:title, price:price, size:size, mainPhoto:mainPhoto,     dinningroomPhoto:dinningroomPhoto,bathroomPhoto:bathroomPhoto, bedroomPhoto:bedroomPhoto, fechaBaja:fechaBaja, bathrooms:bathrooms,
-            AC:AC, heating:heating, wheelchair:wheelchair, tv:tv, kitchen:kitchen, wifi:wifi, bedrooms:bedrooms,
-             beds:beds, persons:persons, description:description, rules:rules, province:province, city:city, latitude:latitude, longitude:longitude});
+        await apartment.updateOne({title:title},{price:price},{size:size},{mainPhoto:mainPhoto},     {dinningroomPhoto:dinningroomPhoto},{bathroomPhoto:bathroomPhoto}, {bedroomPhoto:bedroomPhoto}, {fechaBaja:fechaBaja}, {bathrooms:bathrooms}, {AC:AC}, {heating:heating}, {wheelchair:wheelchair}, {tv:tv}, {kitchen:kitchen}, {wifi:wifi}, {bedrooms:bedrooms}, {beds:beds}, {persons:persons}, {description:description}, {rules:rules}, {province:province}, {city:city}, {latitude:latitude}, {longitude:longitude});
        //Mostramos todos los apartamentos:
        return Tools.mostrarApartamentos(req,res);
-    }
-
-    else {
-        console.log('Es un apartamento nuevo!')
     }
 
     // Usamos el modelo Apartment para insertar un nuevo documento en la BBDD
@@ -160,4 +155,4 @@ router.get('/apartment/:idAparment', async (req, res)=>{
     }) 
 })
 
-module.exports = router; //Exportamos el modulo(variable router, que es un objeto) que importaremos en la app principal
+module.exports = router; //Exportamos el modulo(variable router, que es un objeto) que importaremos en la app principalres
